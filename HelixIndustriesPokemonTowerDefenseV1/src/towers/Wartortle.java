@@ -1,26 +1,41 @@
 package towers;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
-import model.Attack;
+import attacks.Attack;
+import attacks.Ember;
+import attacks.Fireblast;
+import attacks.Flamethrower;
+import maps.Map;
+import model.Tile;
+import model.Type;
+
+/*
+ * Helix Industries:
+ * Daniel S. Luces
+ * Will Clement
+ * Brandon Brown
+ * Gabriel Basadre
+ * 
+ * Wartortle.java - 
+ */
 
 public class Wartortle extends Tower
 {
-	private String name;
-	private int buyPrice;//Price to place the tower
-	private int sellPrice;//Money obtained from selling the tower
-	private int upgradePrice;//Cost to upgrade the tower
-	private Tower upgraded;//Reference to the upgraded form of tower
-	private ArrayList<Attack> attacks= new ArrayList<Attack>();//List of the tower's attacks
-	private File image;//Image for the tower
-	private String type;//Tower's type
-	
-	public Wartortle(ArrayList<Attack> attacks)
+	public Wartortle(Tile t, Map m)
 	{
-		name = "Wartortle";
-		type = "Water";
-		this.attacks = attacks;
-		upgraded = new Blastoise(attacks);
+		super(t,m);
+		super.name = "Wartortle";
+		super.type = Type.WATER;
+		ArrayList<Attack> a = new ArrayList<Attack>();
+		a.add(new Fireblast());
+		super.upgraded = new Blastoise(t,m);
+		super.attacks.add(new Flamethrower());
+		super.buyPrice = 250;
+		super.upgradePrice = 450;
+		if(t!=null)
+			super.setRange(m);
 	}
 }

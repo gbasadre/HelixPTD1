@@ -1,27 +1,41 @@
 package towers;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
-import model.Attack;
+import attacks.Attack;
+import attacks.Ember;
+import attacks.Flamethrower;
+import maps.Map;
+import model.Tile;
+import model.Type;
+
+/*
+ * Helix Industries:
+ * Daniel S. Luces
+ * Will Clement
+ * Brandon Brown
+ * Gabriel Basadre
+ * 
+ * Squirtle.java - 
+ */
 
 public class Squirtle extends Tower
 {
-	private String name;
-	private int buyPrice;//Price to place the tower
-	private int sellPrice;//Money obtained from selling the tower
-	private int upgradePrice;//Cost to upgrade the tower
-	private Tower upgraded;//Reference to the upgraded form of tower
-	private ArrayList<Attack> attacks= new ArrayList<Attack>();//List of the tower's attacks
-	private File image;//Image for the tower
-	private String type;//Tower's type
-	
-	public Squirtle(ArrayList<Attack> attacks)
+	public Squirtle(Tile t,Map m)
 	{
-		name = "Squirtle";
-		type = "Water";
-		this.attacks = attacks;
-		upgraded = new Wartortle(attacks);
+		super(t,m);
+		super.name = "Squirtle";
+		super.type = Type.WATER;
+		ArrayList<Attack> a = new ArrayList<Attack>();
+		a.add(new Flamethrower());
+		super.upgraded = new Wartortle(t,m);
+		super.attacks.add(new Ember());
+		super.buyPrice = 100;
+		super.upgradePrice = 250;
+		if(t!=null)
+			super.setRange(m);
 	}
 
 }

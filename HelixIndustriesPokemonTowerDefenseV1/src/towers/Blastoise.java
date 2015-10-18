@@ -1,25 +1,37 @@
 package towers;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
-import model.Attack;
+import attacks.Attack;
+import attacks.Fireblast;
+import maps.Map;
+import model.Tile;
+import model.Type;
+
+/*
+ * Helix Industries:
+ * Daniel S. Luces
+ * Will Clement
+ * Brandon Brown
+ * Gabriel Basadre
+ * 
+ * Blastoise.java - 
+ */
 
 public class Blastoise extends Tower
 {
-	private String name;
-	private int buyPrice;//Price to place the tower
-	private int sellPrice;//Money obtained from selling the tower
-	private int upgradePrice;//Cost to upgrade the tower
-	private Tower upgraded;//Reference to the upgraded form of tower
-	private ArrayList<Attack> attacks= new ArrayList<Attack>();//List of the tower's attacks
-	private File image;//Image for the tower
-	private String type;//Tower's type
-	
-	public Blastoise(ArrayList<Attack> attacks)
+	public Blastoise(Tile t, Map m)
 	{
-		name = "Blastoise";
-		type = "Water";
-		this.attacks = attacks;
+		super(t,m);
+		super.name = "Blastoise";
+		super.type = Type.WATER;
+		super.upgraded = null;
+		super.attacks.add(new Fireblast());
+		super.buyPrice = 999999;
+		super.upgradePrice = 0;
+		if(t!=null)
+			super.setRange(m);
 	}
 }
